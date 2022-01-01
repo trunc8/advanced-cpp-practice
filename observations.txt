@@ -1,0 +1,20 @@
+---
+parsing_text_files.cpp:17:35: error: no matching function for call to ‘getline(std::ifstream&, std::string&, const char [2])’
+   17 |         getline(in_file, line, ":");
+      |                                   ^
+
+Use ':' char as getline delimiter
+
+---
+warning: junk at end of ‘#pragma pack’ [-Wpragmas]
+    4 | #pragma pack(push, 1);
+      |                      ^
+
+Remove ";" after # declarations
+
+---
+error: no match for ‘operator<’ (operand types are ‘const Person’ and ‘const Person’)
+  386 |       { return __x < __y; }
+      |                ~~~~^~~~~
+
+Define operator overloading function
