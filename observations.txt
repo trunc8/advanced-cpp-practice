@@ -3,18 +3,32 @@ parsing_text_files.cpp:17:35: error: no matching function for call to ‘getline
    17 |         getline(in_file, line, ":");
       |                                   ^
 
-Use ':' char as getline delimiter
+Solution: Use ':' char as getline delimiter
 
 ---
 warning: junk at end of ‘#pragma pack’ [-Wpragmas]
     4 | #pragma pack(push, 1);
       |                      ^
 
-Remove ";" after # declarations
+Solution: Remove ";" after # declarations
 
 ---
 error: no match for ‘operator<’ (operand types are ‘const Person’ and ‘const Person’)
   386 |       { return __x < __y; }
       |                ~~~~^~~~~
 
-Define operator overloading function
+Solution: Define operator overloading function
+
+---
+warning: ISO C++ says that these are ambiguous, even though the worst conversion for the first is better than the worst conversion for the second:
+   11 |     c3 = c1+c2; //assignment operator
+      |             ^~
+In file included from main.cpp:1:
+Complex.h:26:9: note: candidate 1: ‘Complex operator+(const Complex&, const Complex&)’
+   26 | Complex operator+(const Complex &c1, const Complex &c2);
+      |         ^~~~~~~~
+Complex.h:20:14: note: candidate 2: ‘Complex& Complex::operator+(const Complex&) const’
+   20 |     Complex &operator+(const Complex &other) const;
+      |              ^~~~~~~~
+
+Solution: Remove either function or method implementation of assignment operator
