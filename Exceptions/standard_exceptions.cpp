@@ -13,7 +13,7 @@ int main() {
     try {
         MemoryFullClass mem;
     }
-    catch (bad_alloc e) {
+    catch (bad_alloc &e) {
         cout << "Caught exception: " << e.what() << endl;
     }
 
