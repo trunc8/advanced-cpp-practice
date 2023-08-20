@@ -15,8 +15,9 @@ auto test2() -> decltype(getNumber()) {
 }
 
 int main() {
-    auto nValue = 99;
+    auto nValue = 99.f;
     cout << nValue << endl;
+    cout << typeid(nValue).name() << endl;
 
     auto stringValue = "Hello";
     cout << stringValue << endl;

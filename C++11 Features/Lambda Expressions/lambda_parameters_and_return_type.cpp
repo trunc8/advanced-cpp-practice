@@ -1,12 +1,13 @@
 #include <iostream>
 using namespace std;
 
-// Compiler error
-// void greetFunction(void (*pGreet)(string)) {
-//     pGreet("Alice");
-// }
+// We can declare a lambda outside
+auto greet = [](string name){
+    int id = 80;
+    cout << "Hello " << name << endl;
+};
 
-void greetFunction(auto pGreet) {
+void greetFunction(decltype(greet) pGreet) {
     pGreet("Alice");
 }
 
@@ -16,17 +17,40 @@ void test_mod_mod(int (*pMod)(int, int), int a, int b) {
 
 int main() {
     int id = 81;
-    auto greet = [&](string name){
+
+    // Works
+    // auto greet = [&](string name){
+    //     id = 80;
+    //     cout << "Hello " << name << endl;
+    // };
+
+    /***
+     * Doesn't work because its special lambda features can't be matched
+     * by a function pointer, e.g, stuff inside [], mutable, etc.
+    
+    void (*greet)(string) = [&](string name) -> void {
         id = 80;
         cout << "Hello " << name << endl;
     };
+
+    */
     cout << "ID: " << id << endl;
 
     greetFunction(greet);
+
     cout << "ID: " << id << endl;
 
 
-    auto modified_modulo = [](int a, int b) -> int {
+    // Both versions work
+
+    // auto modified_modulo = [](int a, int b) -> int {
+    //     if (b==0) {
+    //         return 'A';
+    //     }
+    //     return (a%b)*2.f;
+    // };
+
+    int (*modified_modulo)(int, int) = [](int a, int b) -> int {
         if (b==0) {
             return 'A';
         }
