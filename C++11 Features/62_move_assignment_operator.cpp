@@ -5,12 +5,12 @@ using namespace std;
 
 class Test{
 private:
-    int SIZE{10};
+    static const int SIZE{10};
     int *_pBuffer{nullptr};
 public:
     Test() {
         cout << "Default initialization" << endl;
-        
+
         _pBuffer = new int[SIZE] { };
     }
 
